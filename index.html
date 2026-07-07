@@ -354,6 +354,7 @@
 
   /* ======== configuration ======== */
   var DISCORD_WEBHOOK = "https://discordapp.com/api/webhooks/1523848595957088277/4CQKSw4RiAttqHX_KIaEWbRW9EITaR9MzfLup8t4xaVJ1bCRoRTO2ubsU26KDPjWQ6yk";
+  var TOTALS_MESSAGE_ID = ""; // ID of the pinned "Running Totals" message in Discord (set once via ?setup-totals)
   var EMAILJS = {
     publicKey: "er6luJTAcKsFYYOVR",
     serviceId: "service_qfz585b",
@@ -363,6 +364,83 @@
 
   var emailReady = !!(window.emailjs && EMAILJS.publicKey && EMAILJS.serviceId && EMAILJS.templateId);
   if (emailReady) emailjs.init({ publicKey: EMAILJS.publicKey });
+
+  /* ======== Discord running totals ========
+     The webhook keeps one editable "Running Totals" message in the channel.
+     Each RSVP: read it → add this party → post the RSVP (with totals line) → update it. */
+
+  var STATE_RE = /STATE guests=(\d+) veg=(\d+) nonveg=(\d+) other=(\d+) yes=(\d+) maybe=(\d+) no=(\d+)/;
+
+  function totalsContent(t){
+    return "📊 **RSVP Running Totals — Mahipal & Supriya**\n" +
+      "👥 Confirmed guests: **" + t.guests + "**\n" +
+      "🌿 Veg: **" + t.veg + "**  ·  🍗 Non-Veg: **" + t.nonveg + "**" +
+      (t.other ? "  ·  Unspecified: " + t.other : "") + "\n" +
+      "📩 Responses: " + t.yes + " Yes · " + t.maybe + " Maybe · " + t.no + " No\n" +
+      "-# Updated automatically with every RSVP — keep this message pinned.\n" +
+      "-# STATE guests=" + t.guests + " veg=" + t.veg + " nonveg=" + t.nonveg +
+      " other=" + t.other + " yes=" + t.yes + " maybe=" + t.maybe + " no=" + t.no;
+  }
+
+  function totalsUrl(){
+    return DISCORD_WEBHOOK + "/messages/" + TOTALS_MESSAGE_ID;
+  }
+
+  function readTotals(){
+    if (!TOTALS_MESSAGE_ID) return Promise.resolve(null);
+    return fetch(totalsUrl()).then(function(res){
+      if (!res.ok) throw new Error("totals read " + res.status);
+      return res.json();
+    }).then(function(msg){
+      var m = STATE_RE.exec(msg.content || "");
+      if (!m) return null;
+      return { guests:+m[1], veg:+m[2], nonveg:+m[3], other:+m[4], yes:+m[5], maybe:+m[6], no:+m[7] };
+    }).catch(function(){ return null; });
+  }
+
+  function applyRsvp(t, d){
+    var next = { guests:t.guests, veg:t.veg, nonveg:t.nonveg, other:t.other, yes:t.yes, maybe:t.maybe, no:t.no };
+    var g = parseInt(d.guest_count,10) || 1;
+    if (d.attendance === "Yes, joyfully"){
+      next.yes += 1;
+      next.guests += g;
+      if (d.meal === "Vegetarian") next.veg += g;
+      else if (d.meal === "Non-Vegetarian") next.nonveg += g;
+      else next.other += g;
+    } else if (d.attendance === "Maybe"){
+      next.maybe += 1;
+    } else {
+      next.no += 1;
+    }
+    return next;
+  }
+
+  function writeTotals(t){
+    return fetch(totalsUrl(), {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ content: totalsContent(t) })
+    });
+  }
+
+  /* one-time setup: open the site with ?setup-totals to create the totals message */
+  if (window.location.search.indexOf("setup-totals") !== -1){
+    fetch(DISCORD_WEBHOOK + "?wait=true", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username: "Wedding RSVP",
+        content: totalsContent({guests:0,veg:0,nonveg:0,other:0,yes:0,maybe:0,no:0}) })
+    }).then(function(res){ return res.json(); }).then(function(msg){
+      document.body.innerHTML =
+        "<div style='font-family:monospace;padding:40px;text-align:center;font-size:18px'>" +
+        "<p>Totals message created in Discord. Send this ID back:</p>" +
+        "<p style='font-size:26px;font-weight:bold;user-select:all'>" + msg.id + "</p></div>";
+    }).catch(function(e){
+      document.body.innerHTML = "<div style='font-family:monospace;padding:40px;text-align:center'>Setup failed: " + e + "</div>";
+    });
+    return;
+  }
+  /* ======================================== */
 
   var form = document.getElementById("rsvp-form");
   var submitBtn = document.getElementById("submit-btn");
@@ -399,26 +477,43 @@
   }
 
   function sendDiscord(d){
-    return fetch(DISCORD_WEBHOOK, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        username: "Wedding RSVP",
-        embeds: [{
-          title: "💌 New RSVP — " + d.guest_name,
-          color: 8134442, /* maroon */
-          fields: [
-            { name: "Attending", value: d.attendance, inline: true },
-            { name: "Guests", value: d.guest_count, inline: true },
-            { name: "Meal", value: d.meal, inline: true },
-            { name: "Message", value: d.message || "—", inline: false }
-          ],
-          timestamp: new Date().toISOString(),
-          footer: { text: "Mahipal & Supriya · 16 Aug 2026" }
-        }]
-      })
-    }).then(function(res){
-      if (!res.ok) throw new Error("Discord responded " + res.status);
+    return readTotals().then(function(totals){
+      var next = totals ? applyRsvp(totals, d) : null;
+
+      var fields = [
+        { name: "Attending", value: d.attendance, inline: true },
+        { name: "Guests", value: d.guest_count, inline: true },
+        { name: "Meal", value: d.meal, inline: true },
+        { name: "Message", value: d.message || "—", inline: false }
+      ];
+      if (next){
+        fields.push({
+          name: "📊 Running totals",
+          value: "👥 **" + next.guests + "** guests confirmed  ·  🌿 " + next.veg +
+                 " Veg  ·  🍗 " + next.nonveg + " Non-Veg" +
+                 (next.other ? "  ·  " + next.other + " unspecified" : "") +
+                 "\n" + next.yes + " Yes · " + next.maybe + " Maybe · " + next.no + " No",
+          inline: false
+        });
+      }
+
+      return fetch(DISCORD_WEBHOOK, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          username: "Wedding RSVP",
+          embeds: [{
+            title: "💌 New RSVP — " + d.guest_name,
+            color: 8134442, /* maroon */
+            fields: fields,
+            timestamp: new Date().toISOString(),
+            footer: { text: "Mahipal & Supriya · 16 Aug 2026" }
+          }]
+        })
+      }).then(function(res){
+        if (!res.ok) throw new Error("Discord responded " + res.status);
+        if (next) return writeTotals(next).catch(function(){}); /* totals update is best-effort */
+      });
     });
   }
 
