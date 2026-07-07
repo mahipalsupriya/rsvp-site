@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mahipal &amp; Supriya — Wedding RSVP</title>
+<meta name="description" content="We cordially invite you to celebrate the marriage of Mahipal and Supriya — Sunday, 16th August 2026, Ranch Retreat, Van Alstyne, TX.">
+<meta property="og:title" content="Mahipal & Supriya — Wedding Invitation">
+<meta property="og:description" content="Sunday, 16th August 2026 · Muhurtham 11:49 AM · Ranch Retreat, Van Alstyne, TX">
+<meta property="og:image" content="invitation.jpeg">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>💍</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#F6EDD8;
+    --card:#FBF5E6;
+    --maroon:#7C1F2A;
+    --maroon-dark:#5E1620;
+    --gold:#B08D3E;
+    --gold-bright:#C9A24B;
+    --ink:#4A3728;
+    --leaf:#5A6B33;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--cream);
+    background-image:radial-gradient(ellipse at 50% 0%, #FBF3DE 0%, var(--cream) 60%);
+    color:var(--ink);
+    font-family:'Cormorant Garamond',serif;
+    font-size:19px;
+    line-height:1.55;
+  }
+
+  .page{max-width:680px;margin:0 auto;padding:0 16px 72px}
+
+  /* ---------- hero ---------- */
+  .hero{padding:28px 0 8px;text-align:center}
+  .hero .frame{
+    display:inline-block;
+    padding:10px;
+    background:linear-gradient(160deg,#D8BC72,#B08D3E 45%,#E3CB8A);
+    border-radius:6px;
+    box-shadow:0 18px 44px rgba(94,22,32,.18);
+  }
+  .hero .frame-inner{
+    padding:6px;background:var(--card);border-radius:3px;
+  }
+  .hero img{
+    display:block;width:100%;height:auto;max-width:600px;border-radius:2px;
+  }
+
+  /* ---------- ornament divider ---------- */
+  .ornament{
+    display:flex;align-items:center;justify-content:center;gap:14px;
+    margin:34px auto 0;color:var(--gold);
+  }
+  .ornament::before,.ornament::after{
+    content:"";height:1px;width:72px;
+    background:linear-gradient(to right,transparent,var(--gold));
+  }
+  .ornament::after{background:linear-gradient(to left,transparent,var(--gold))}
+  .ornament svg{flex:none}
+
+  /* ---------- section cards ---------- */
+  .card{
+    position:relative;
+    background:var(--card);
+    border:1px solid #DEC98F;
+    box-shadow:inset 0 0 0 4px var(--card), inset 0 0 0 5px #DEC98F,
+               0 10px 30px rgba(94,22,32,.08);
+    border-radius:4px;
+    padding:44px 34px 40px;
+    margin-top:26px;
+  }
+  /* temple-arch peak on top edge — the signature frame */
+  .card::before{
+    content:"";
+    position:absolute;top:-14px;left:50%;transform:translateX(-50%) rotate(45deg);
+    width:26px;height:26px;background:var(--card);
+    border-top:1px solid #DEC98F;border-left:1px solid #DEC98F;
+  }
+  .card::after{
+    content:"";
+    position:absolute;top:-4px;left:50%;transform:translateX(-50%) rotate(45deg);
+    width:8px;height:8px;background:var(--gold-bright);border-radius:1px;
+  }
+
+  .script{
+    font-family:'Great Vibes',cursive;
+    color:var(--maroon);
+    font-size:2.5rem;
+    text-align:center;
+    line-height:1.15;
+  }
+  .eyebrow{
+    font-family:'Jost',sans-serif;
+    font-weight:500;font-size:.72rem;letter-spacing:.32em;text-transform:uppercase;
+    color:var(--gold);text-align:center;margin-bottom:6px;
+  }
+
+  /* ---------- details ---------- */
+  .detail-rows{margin:28px 0 4px}
+  .detail{
+    display:flex;flex-direction:column;align-items:center;text-align:center;
+    padding:18px 0;
+  }
+  .detail + .detail{border-top:1px dashed #DEC98F}
+  .detail .label{
+    font-family:'Jost',sans-serif;font-weight:500;font-size:.7rem;
+    letter-spacing:.3em;text-transform:uppercase;color:var(--maroon);
+    margin-bottom:4px;
+  }
+  .detail .value{
+    font-size:1.55rem;font-weight:600;color:var(--ink);line-height:1.25;
+  }
+  .detail .sub{font-size:1.05rem;font-style:italic;color:#7a6248}
+
+  .btn-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:26px}
+  .btn{
+    font-family:'Jost',sans-serif;font-weight:500;font-size:.85rem;
+    letter-spacing:.14em;text-transform:uppercase;
+    padding:13px 26px;border-radius:999px;cursor:pointer;
+    text-decoration:none;display:inline-flex;align-items:center;gap:9px;
+    transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
+    border:1px solid var(--maroon);
+  }
+  .btn:focus-visible{outline:3px solid var(--gold-bright);outline-offset:2px}
+  .btn-solid{background:var(--maroon);color:#F9EFD9}
+  .btn-solid:hover{background:var(--maroon-dark);transform:translateY(-1px);box-shadow:0 8px 18px rgba(94,22,32,.25)}
+  .btn-outline{background:transparent;color:var(--maroon)}
+  .btn-outline:hover{background:rgba(124,31,42,.07);transform:translateY(-1px)}
+
+  /* ---------- form ---------- */
+  form{margin-top:26px}
+  .field{margin-bottom:22px}
+  .field-label{
+    display:block;font-family:'Jost',sans-serif;font-weight:500;font-size:.72rem;
+    letter-spacing:.26em;text-transform:uppercase;color:var(--maroon);
+    margin-bottom:9px;
+  }
+  .field-label .req{color:var(--gold);letter-spacing:0}
+  input[type=text],input[type=number],textarea{
+    width:100%;
+    font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:var(--ink);
+    background:#FFFDF6;
+    border:1px solid #D6C08A;border-radius:6px;
+    padding:12px 15px;
+  }
+  input:focus,textarea:focus{
+    outline:none;border-color:var(--gold);
+    box-shadow:0 0 0 3px rgba(176,141,62,.22);
+  }
+  textarea{resize:vertical;min-height:96px}
+
+  .pills{display:flex;gap:10px;flex-wrap:wrap}
+  .pill{position:relative}
+  .pill input{position:absolute;opacity:0;inset:0;cursor:pointer}
+  .pill span{
+    display:inline-block;
+    font-family:'Jost',sans-serif;font-size:.88rem;font-weight:400;
+    letter-spacing:.06em;
+    padding:10px 22px;border-radius:999px;
+    border:1px solid #C9AE6E;color:var(--ink);background:#FFFDF6;
+    cursor:pointer;transition:all .15s ease;
+  }
+  .pill input:checked + span{
+    background:var(--maroon);border-color:var(--maroon);color:#F9EFD9;
+  }
+  .pill input:focus-visible + span{outline:3px solid var(--gold-bright);outline-offset:2px}
+  .pill:hover span{border-color:var(--maroon)}
+
+  .stepper{display:flex;align-items:center;gap:0;width:max-content;border:1px solid #D6C08A;border-radius:6px;background:#FFFDF6;overflow:hidden}
+  .stepper button{
+    font-family:'Jost',sans-serif;font-size:1.2rem;line-height:1;
+    width:46px;height:48px;border:none;background:transparent;color:var(--maroon);
+    cursor:pointer;
+  }
+  .stepper button:hover{background:rgba(124,31,42,.08)}
+  .stepper button:focus-visible{outline:3px solid var(--gold-bright);outline-offset:-3px}
+  .stepper input{
+    width:64px;text-align:center;border:none;border-left:1px solid #EADFC2;border-right:1px solid #EADFC2;
+    border-radius:0;padding:12px 4px;font-size:1.2rem;
+    -moz-appearance:textfield;
+  }
+  .stepper input::-webkit-outer-spin-button,.stepper input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+
+  .submit-row{text-align:center;margin-top:30px}
+  .btn-submit{font-size:.92rem;padding:15px 46px}
+  .btn-submit[disabled]{opacity:.6;cursor:wait;transform:none}
+
+  .form-error{
+    display:none;margin-top:18px;padding:14px 18px;border-radius:6px;
+    background:#FBE9E7;border:1px solid #D8938A;color:#7C2A1F;
+    font-family:'Jost',sans-serif;font-size:.92rem;text-align:center;
+  }
+  .form-error.show{display:block}
+
+  /* ---------- confirmation ---------- */
+  .confirm{display:none;text-align:center;padding:14px 0 4px}
+  .confirm.show{display:block}
+  .confirm .script{font-size:2.9rem;margin-top:10px}
+  .confirm p{max-width:42ch;margin:12px auto 0;font-size:1.15rem}
+  .confirm .bells{font-size:1.6rem;letter-spacing:.4em;margin-top:14px;color:var(--gold)}
+
+  footer{
+    text-align:center;margin-top:44px;
+    font-family:'Jost',sans-serif;font-size:.72rem;letter-spacing:.28em;
+    text-transform:uppercase;color:#A08A5E;
+  }
+  footer .names{font-family:'Great Vibes',cursive;font-size:1.9rem;letter-spacing:0;text-transform:none;color:var(--maroon);margin-bottom:6px}
+
+  .visually-hidden{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  .hp-field{position:absolute;left:-6000px;top:-6000px}
+
+  @media (max-width:520px){
+    body{font-size:17px}
+    .card{padding:34px 20px 32px}
+    .detail .value{font-size:1.3rem}
+    .btn{width:100%;justify-content:center}
+    .btn-row{flex-direction:column}
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{transition:none!important;scroll-behavior:auto!important}
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ============ HERO: invitation ============ -->
+  <header class="hero">
+    <div class="frame"><div class="frame-inner">
+      <img src="invitation.jpeg" alt="Wedding invitation for Mahipal and Supriya — Sunday, 16th August 2026, Muhurtham 11:49 AM (Abhijith Lagnam), Ranch Retreat, Van Alstyne, TX">
+    </div></div>
+  </header>
+
+  <div class="ornament" aria-hidden="true">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 2l2.4 6.2L21 9l-5 4.4 1.6 6.6L12 16.8 6.4 20l1.6-6.6L3 9l6.6-.8L12 2z" fill="#C9A24B"/></svg>
+  </div>
+
+  <!-- ============ DETAILS ============ -->
+  <section class="card" aria-labelledby="details-heading">
+    <p class="eyebrow">Wedding Details</p>
+    <h1 class="script" id="details-heading">Mahipal &amp; Supriya</h1>
+
+    <div class="detail-rows">
+      <div class="detail">
+        <span class="label">Date</span>
+        <span class="value">Sunday, August 16, 2026</span>
+      </div>
+      <div class="detail">
+        <span class="label">Muhurtham</span>
+        <span class="value">11:49 AM</span>
+        <span class="sub">Abhijith Lagnam</span>
+      </div>
+      <div class="detail">
+        <span class="label">Venue</span>
+        <span class="value">Ranch Retreat</span>
+        <span class="sub">Van Alstyne, Texas</span>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <a class="btn btn-solid" target="_blank" rel="noopener"
+         href="https://www.google.com/maps/search/?api=1&query=Ranch+Retreat%2C+Van+Alstyne%2C+TX">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>
+        Open in Maps
+      </a>
+      <a class="btn btn-outline" target="_blank" rel="noopener"
+         href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Mahipal+%26+Supriya+%E2%80%94+Wedding&dates=20260816T110000/20260816T150000&ctz=America/Chicago&details=We+cordially+invite+you+to+celebrate+the+marriage+of+Mahipal+and+Supriya.%0AMuhurtham%3A+11%3A49+AM+(Abhijith+Lagnam)&location=Ranch+Retreat%2C+Van+Alstyne%2C+TX">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 4h-1V2h-2v2H8V2H6v2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 16H5V10h14v10zM5 8V6h14v2H5z"/></svg>
+        Add to Calendar
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ RSVP ============ -->
+  <section class="card" aria-labelledby="rsvp-heading">
+    <div id="form-wrap">
+      <p class="eyebrow">Kindly Respond</p>
+      <h2 class="script" id="rsvp-heading">RSVP</h2>
+
+      <form id="rsvp-form" novalidate>
+        <!-- honeypot: hidden from humans, catches bots -->
+        <div class="hp-field" aria-hidden="true">
+          <label>Leave this field empty<input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="guest-name">Your name <span class="req">*</span></label>
+          <input type="text" id="guest-name" name="guest_name" required autocomplete="name" placeholder="Full name">
+        </div>
+
+        <div class="field">
+          <span class="field-label" id="attend-label">Will you attend? <span class="req">*</span></span>
+          <div class="pills" role="radiogroup" aria-labelledby="attend-label">
+            <label class="pill"><input type="radio" name="attendance" value="Yes, joyfully" required><span>Yes, joyfully</span></label>
+            <label class="pill"><input type="radio" name="attendance" value="Maybe"><span>Maybe</span></label>
+            <label class="pill"><input type="radio" name="attendance" value="Regretfully, no"><span>Regretfully, no</span></label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="guest-count">Number of guests</label>
+          <div class="stepper">
+            <button type="button" id="step-down" aria-label="One fewer guest">−</button>
+            <input type="number" id="guest-count" name="guest_count" value="1" min="1" max="15" inputmode="numeric">
+            <button type="button" id="step-up" aria-label="One more guest">+</button>
+          </div>
+        </div>
+
+        <div class="field">
+          <span class="field-label" id="meal-label">Meal preference</span>
+          <div class="pills" role="radiogroup" aria-labelledby="meal-label">
+            <label class="pill"><input type="radio" name="meal" value="Vegetarian"><span>Veg</span></label>
+            <label class="pill"><input type="radio" name="meal" value="Non-Vegetarian"><span>Non-Veg</span></label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="message">A note for the couple <span style="text-transform:none;letter-spacing:.05em">(optional)</span></label>
+          <textarea id="message" name="message" placeholder="Blessings, wishes, or anything we should know…"></textarea>
+        </div>
+
+        <div class="submit-row">
+          <button type="submit" class="btn btn-solid btn-submit" id="submit-btn">Send RSVP</button>
+        </div>
+
+        <div class="form-error" id="form-error" role="alert"></div>
+      </form>
+    </div>
+
+    <div class="confirm" id="confirm">
+      <div class="bells" aria-hidden="true">🔔 ✦ 🔔</div>
+      <p class="eyebrow">RSVP received</p>
+      <p class="script" id="confirm-name">Thank you!</p>
+      <p id="confirm-text">Your response has been sent to the families. We can't wait to celebrate with you on August 16th.</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="names">Mahipal &amp; Supriya</div>
+    Sunday · 16 August 2026 · Van Alstyne, TX
+  </footer>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+(function(){
+  "use strict";
+
+  /* ======== configuration ======== */
+  var DISCORD_WEBHOOK = "https://discordapp.com/api/webhooks/1523848595957088277/4CQKSw4RiAttqHX_KIaEWbRW9EITaR9MzfLup8t4xaVJ1bCRoRTO2ubsU26KDPjWQ6yk";
+  var EMAILJS = {
+    publicKey: "er6luJTAcKsFYYOVR",
+    serviceId: "service_qfz585b",
+    templateId: ""    // pending — email sending activates once this is set
+  };
+  /* ================================ */
+
+  var emailReady = !!(window.emailjs && EMAILJS.publicKey && EMAILJS.serviceId && EMAILJS.templateId);
+  if (emailReady) emailjs.init({ publicKey: EMAILJS.publicKey });
+
+  var form = document.getElementById("rsvp-form");
+  var submitBtn = document.getElementById("submit-btn");
+  var errBox = document.getElementById("form-error");
+
+  /* guest count stepper */
+  var count = document.getElementById("guest-count");
+  document.getElementById("step-down").addEventListener("click", function(){
+    count.value = Math.max(1, (parseInt(count.value,10)||1) - 1);
+  });
+  document.getElementById("step-up").addEventListener("click", function(){
+    count.value = Math.min(15, (parseInt(count.value,10)||1) + 1);
+  });
+
+  function getData(){
+    var fd = new FormData(form);
+    return {
+      guest_name: (fd.get("guest_name")||"").toString().trim(),
+      attendance: (fd.get("attendance")||"").toString(),
+      guest_count: (fd.get("guest_count")||"1").toString(),
+      meal: (fd.get("meal")||"Not specified").toString(),
+      message: (fd.get("message")||"").toString().trim(),
+      honeypot: (fd.get("website")||"").toString()
+    };
+  }
+
+  function showError(msg){
+    errBox.textContent = msg;
+    errBox.classList.add("show");
+  }
+  function clearError(){
+    errBox.textContent = "";
+    errBox.classList.remove("show");
+  }
+
+  function sendDiscord(d){
+    return fetch(DISCORD_WEBHOOK, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        username: "Wedding RSVP",
+        embeds: [{
+          title: "💌 New RSVP — " + d.guest_name,
+          color: 8134442, /* maroon */
+          fields: [
+            { name: "Attending", value: d.attendance, inline: true },
+            { name: "Guests", value: d.guest_count, inline: true },
+            { name: "Meal", value: d.meal, inline: true },
+            { name: "Message", value: d.message || "—", inline: false }
+          ],
+          timestamp: new Date().toISOString(),
+          footer: { text: "Mahipal & Supriya · 16 Aug 2026" }
+        }]
+      })
+    }).then(function(res){
+      if (!res.ok) throw new Error("Discord responded " + res.status);
+    });
+  }
+
+  function sendEmail(d){
+    if (!emailReady) return Promise.resolve("skipped");
+    return emailjs.send(EMAILJS.serviceId, EMAILJS.templateId, {
+      guest_name: d.guest_name,
+      attendance: d.attendance,
+      guest_count: d.guest_count,
+      meal_preference: d.meal,
+      message: d.message || "—",
+      submitted_at: new Date().toLocaleString("en-US", { timeZone: "America/Chicago" }) + " (CT)"
+    });
+  }
+
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    clearError();
+
+    var d = getData();
+
+    if (d.honeypot) { // bot — pretend success silently
+      form.reset();
+      return;
+    }
+    if (!d.guest_name){
+      showError("Please enter your name so we know who's responding.");
+      document.getElementById("guest-name").focus();
+      return;
+    }
+    if (!d.attendance){
+      showError("Please let us know if you'll attend — Yes, Maybe, or No.");
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Sending…";
+
+    Promise.allSettled([sendDiscord(d), sendEmail(d)]).then(function(results){
+      var discordOk = results[0].status === "fulfilled";
+      var emailOk = results[1].status === "fulfilled";
+
+      if (discordOk || emailOk){
+        document.getElementById("form-wrap").style.display = "none";
+        var c = document.getElementById("confirm");
+        var first = d.guest_name.split(" ")[0];
+        document.getElementById("confirm-name").textContent = "Thank you, " + first + "!";
+        if (d.attendance === "Regretfully, no"){
+          document.getElementById("confirm-text").textContent =
+            "Your response has been sent to the families. You'll be missed — thank you for letting us know.";
+        }
+        c.classList.add("show");
+        c.scrollIntoView({ behavior: "smooth", block: "center" });
+      } else {
+        showError("We couldn't send your RSVP — please check your connection and press \u201CSend RSVP\u201D to try again. If it keeps failing, message the families directly.");
+      }
+    }).finally(function(){
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Send RSVP";
+    });
+  });
+})();
+</script>
+</body>
+</html>
