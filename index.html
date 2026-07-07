@@ -423,6 +423,18 @@
     });
   }
 
+  /* reset counters to zero: open the site with ?reset-totals (use after testing) */
+  if (window.location.search.indexOf("reset-totals") !== -1 && TOTALS_MESSAGE_ID){
+    writeTotals({guests:0,veg:0,nonveg:0,other:0,yes:0,maybe:0,no:0}).then(function(res){
+      document.body.innerHTML = "<div style='font-family:monospace;padding:40px;text-align:center;font-size:18px'>" +
+        (res.ok ? "✅ Totals reset to zero. The pinned Discord message now shows a clean slate."
+                : "Reset failed (" + res.status + "). Please try again.") + "</div>";
+    }).catch(function(e){
+      document.body.innerHTML = "<div style='font-family:monospace;padding:40px;text-align:center'>Reset failed: " + e + "</div>";
+    });
+    return;
+  }
+
   /* one-time setup: open the site with ?setup-totals to create the totals message */
   if (window.location.search.indexOf("setup-totals") !== -1){
     fetch(DISCORD_WEBHOOK + "?wait=true", {
